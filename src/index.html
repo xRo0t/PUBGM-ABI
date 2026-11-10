@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Battleground Client</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <header class="titlebar">
+    <div class="brand">
+      <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="brand-box">BG</div>
+      <div class="brand-text">BATTLEGROUND CLIENT</div>
+    </div>
+    <div class="window-actions">
+      <button class="chrome-btn bell" type="button" aria-label="Notifications">
+        <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
+      </button>
+      <button id="minimizeBtn" class="chrome-btn" type="button" aria-label="Minimize">—</button>
+      <button id="maximizeBtn" class="chrome-btn" type="button" aria-label="Maximize">□</button>
+      <button id="closeBtn" class="chrome-btn close" type="button" aria-label="Close">×</button>
+    </div>
+  </header>
+
+  <div id="sidebarOverlay" class="sidebar-overlay" aria-hidden="true"></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="player">
+        <div class="player-avatar">R</div>
+        <div>
+          <strong>PLAYER</strong>
+          <span>Ready to battle</span>
+        </div>
+      </div>
+
+      <div class="side-divider"></div>
+
+      <nav class="nav">
+        <button class="nav-item active" type="button" data-page="home">
+          <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9h-6v-6H9v6H3z"/></svg>
+          <span>Home</span>
+        </button>
+        <button class="nav-item" type="button" data-page="library">
+          <svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>
+          <span>Library</span>
+        </button>
+        <button class="nav-item" type="button" data-page="news">
+          <svg viewBox="0 0 24 24"><path d="M4 4h5v16H4zM15 4h5v16h-5zM11 7h2v10h-2z"/></svg>
+          <span>News</span>
+        </button>
+        <button class="nav-item" type="button" data-page="settings">
+          <svg viewBox="0 0 24 24"><path d="M12 8a4 4 0 100 8 4 4 0 000-8zm9 4l-2.1-1.2.2-2.4-2.3-1.3-1.8 1.5-2.2-.9-.6-2.3H9.8l-.6 2.3-2.2.9-1.8-1.5-2.3 1.3.2 2.4L1 12l2.1 1.2-.2 2.4 2.3 1.3 1.8-1.5 2.2.9.6 2.3h2.4l.6-2.3 2.2-.9 1.8 1.5 2.3-1.3-.2-2.4z"/></svg>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <div class="service">
+        <div class="service-title"><i></i><span>Services Online</span></div>
+        <small>All systems operational</small>
+        <div class="version">Launcher 2.0.0</div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="page-home" class="page active">
+        <section class="hero">
+          <div class="hero-art"></div>
+          <div class="hero-vignette"></div>
+          <div class="hero-copy">
+            <div class="hero-kicker">PUBG MOBILE</div>
+            <h1><span>ENTER THE</span><b>BATTLEGROUND</b></h1>
+            <p>Drop in, gear up, and be the last one standing.<br>
+              Manage your game, customize settings, and launch with confidence.</p>
+            <div class="hero-actions">
+              <button class="btn-yellow small" type="button" data-toast="News and patch details can be connected here.">LEARN MORE</button>
+              <button class="btn-dark small" type="button" data-toast="Trailer action placeholder.">
+                <span class="tiny-play">▷</span> WATCH TRAILER
+              </button>
+            </div>
+          </div>
+          <div class="slide-dots"><span class="on"></span><span></span><span></span><span></span></div>
+        </section>
+
+        <div class="dashboard">
+          <section class="panel game-client">
+            <div class="panel-head">
+              <div>
+                <div class="kicker">GAME CLIENT</div>
+                <h2>PUBG Mobile</h2>
+              </div>
+              <div class="ready"><span>✓</span> READY</div>
+            </div>
+
+            <div class="settings-list">
+              <button class="setting-row editable" type="button" data-setting="graphicsQuality">
+                <span class="row-icon">▣</span><span class="row-label">Graphics Quality</span>
+                <strong id="graphicsQualityValue">HDR</strong><span class="chev">⌄</span>
+              </button>
+              <button class="setting-row editable" type="button" data-setting="frameRate">
+                <span class="row-icon">◴</span><span class="row-label">Frame Rate</span>
+                <strong id="frameRateValue">Ultra (90 FPS)</strong><span class="chev">⌄</span>
+              </button>
+              <button class="setting-row editable" type="button" data-setting="controlsProfile">
+                <span class="row-icon">⌘</span><span class="row-label">Controls Profile</span>
+                <strong id="controlsProfileValue">Classic (Default)</strong><span class="chev">›</span>
+              </button>
+              <button id="downloadResourcesBtn" class="setting-row" type="button">
+                <span class="row-icon">↓</span><span class="row-label">Download Resources</span>
+                <strong class="good">All Packs Installed</strong><span class="check">✓</span>
+              </button>
+              <button id="repairFilesBtn" class="setting-row" type="button">
+                <span class="row-icon">🔧</span><span class="row-label">Repair Files</span>
+                <strong id="repairValue" class="good">No issues detected</strong><span class="check">✓</span>
+              </button>
+              <button class="setting-row editable" type="button" data-setting="voiceChat">
+                <span class="row-icon">♩</span><span class="row-label">Voice Chat</span>
+                <strong id="voiceChatValue">Enabled</strong><span class="chev">›</span>
+              </button>
+            </div>
+
+            <div class="panel-tools">
+              <button type="button" data-toast="Controls editor placeholder — ready to connect to your control-mapping system.">
+                <span>⌘</span> MANAGE CONTROLS
+              </button>
+              <i></i>
+              <button id="openFolderBtn" type="button"><span>▱</span> OPEN GAME FOLDER</button>
+            </div>
+          </section>
+
+          <section class="panel launch-panel">
+            <div class="kicker">QUICK LAUNCH</div>
+            <div class="launch-status">
+              <div class="medal">★</div>
+              <div><h3>Ready to drop in?</h3><p id="launchStatus">Everything looks good. Jump into the action.</p></div>
+            </div>
+
+            <button id="startGameBtn" class="start-game" type="button">
+              <span class="start-play">▶</span>
+              <span class="start-copy"><small>LAUNCH</small><b>START GAME</b></span>
+            </button>
+
+            <div class="launch-bottom">
+              <button id="verifyBtn" class="btn-dark action-btn" type="button"><span>◆</span> VERIFY FILES</button>
+              <button id="toolsBtn" class="btn-dark action-btn" type="button"><span>🔧</span> GAME TOOLS <b>⌄</b></button>
+            </div>
+          </section>
+        </div>
+
+        <section class="news-strip">
+          <article class="main-update">
+            <img src="assets/update-jeep.jpg" alt="">
+            <div class="update-copy">
+              <div class="update-badge">LATEST UPDATE</div>
+              <h3>Version 3.2 Update is Live!</h3>
+              <p>New map areas, weapons, and balance updates are here.<br>Check out the full patch notes.</p>
+              <button type="button" data-toast="Patch notes placeholder.">Read More →</button>
+            </div>
+          </article>
+
+          <article class="mini-news">
+            <img src="assets/event-drop.jpg" alt="">
+            <div><small>Event</small><h4>Summer Showdown</h4><p>Earn exclusive rewards.</p><b>Ends in 6d 12h</b></div>
+          </article>
+
+          <article class="mini-news">
+            <img src="assets/news-shield.jpg" alt="">
+            <div><small>News</small><h4>Anti-Cheat Update</h4><p>Keeping the battleground fair.</p><b>Learn More →</b></div>
+          </article>
+
+          <div class="news-arrows">
+            <button type="button" data-toast="Previous news item.">‹</button>
+            <button type="button" data-toast="Next news item.">›</button>
+          </div>
+        </section>
+      </section>
+
+      <section id="page-library" class="page simple-page">
+        <div class="simple-head"><div class="kicker">YOUR GAMES</div><h1>Library</h1></div>
+        <div class="library-card panel">
+          <div class="library-art"></div>
+          <div class="library-copy"><div class="ready inline">READY</div><h2>PUBG Mobile</h2><p>Configured Battleground client.</p><button id="libraryStart" class="btn-yellow">START GAME</button></div>
+        </div>
+      </section>
+
+      <section id="page-news" class="page simple-page">
+        <div class="simple-head"><div class="kicker">CLIENT FEED</div><h1>News</h1></div>
+        <div class="news-page-grid">
+          <article class="panel story"><img src="assets/update-jeep.jpg" alt=""><div><div class="kicker">UPDATE</div><h2>Version 3.2 Update is Live!</h2><p>Launcher news and game content can be connected to your backend later.</p></div></article>
+          <article class="panel story"><img src="assets/event-drop.jpg" alt=""><div><div class="kicker">EVENT</div><h2>Summer Showdown</h2><p>Event card prepared for remote content.</p></div></article>
+        </div>
+      </section>
+
+      <section id="page-settings" class="page simple-page">
+        <div class="simple-head"><div class="kicker">CLIENT CONFIGURATION</div><h1>Settings</h1></div>
+        <section class="panel settings-page-panel">
+          <label>Game executable</label>
+          <div class="file-row">
+            <input id="gamePath" type="text" readonly placeholder="Select game executable...">
+            <button id="browseBtn" class="btn-yellow" type="button">BROWSE</button>
+          </div>
+          <p class="setting-help">The START GAME button launches this executable directly.</p>
+
+          <div class="settings-form-grid">
+            <label>Graphics Quality
+              <select id="graphicsSelect"><option>Smooth</option><option>Balanced</option><option>HD</option><option selected>HDR</option><option>Ultra HD</option></select>
+            </label>
+            <label>Frame Rate
+              <select id="fpsSelect"><option>30 FPS</option><option>60 FPS</option><option selected>Ultra (90 FPS)</option><option>Extreme (120 FPS)</option></select>
+            </label>
+            <label>Controls Profile
+              <select id="controlsSelect"><option selected>Classic (Default)</option><option>Advanced</option><option>Custom</option></select>
+            </label>
+            <label>Voice Chat
+              <select id="voiceSelect"><option selected>Enabled</option><option>Disabled</option></select>
+            </label>
+          </div>
+
+          <button id="saveSettingsBtn" class="btn-yellow save-settings" type="button">SAVE CHANGES</button>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+</div>
+<script src="renderer.js"></script>
+</body>
+</html>

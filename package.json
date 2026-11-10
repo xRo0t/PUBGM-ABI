@@ -1,0 +1,33 @@
+{
+  "name": "battleground-client-html",
+  "version": "0.5.0",
+  "private": true,
+  "description": "Responsive Battleground Electron launcher built with real HTML/CSS/JS",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "electron-builder --win nsis",
+    "build:dir": "electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "^39.1.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.battleground.client",
+    "productName": "Battleground Client",
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
